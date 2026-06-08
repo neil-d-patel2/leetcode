@@ -378,6 +378,12 @@ nums = [1,2]
 val = 3
 double(nums,val)
 
+Printing things from heap:
+
+while heap:
+    smallest = heapq.heappop(heap)
+    print(f"Processed: {smallest}")
+
 
 
 
