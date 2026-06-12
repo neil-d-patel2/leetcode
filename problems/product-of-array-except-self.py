@@ -16,19 +16,23 @@ Example 2:
 
 Input: nums = [-1,1,0,-3,3]
 Output: [0,0,9,0,0]
-
 '''
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
 
-        final_list = [1] * len(nums);
+        final_list = [1] * (len(nums));
 
-        for i,num in enumerate(nums):
-            for index,item in enumerate(nums):
-                if index != i:
-                    final_list[i] *= item
+        prefix = 1
+        for i in range(len(nums)):   # final_list = [1,1,2,6]
+            final_list[i] = prefix   # prefix: 1,1,2,3
+            prefix *= nums[i]
 
-        
+        postfix = 1
+        for i in range(len(nums) - 1, -1, -1):
+            final_list[i] *= postfix
+            postfix *= nums[i]
+
+
         return final_list
         
 
