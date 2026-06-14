@@ -42,44 +42,30 @@ Constraints:
 
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-    
-       '''
-        Start at an x in num, get every y,z that is not part of x and check if y + z + x == 0. If it does, append x,y,z into the out array. 
 
-        Input: nums = [-1,0,1,2,-1,-4]
-        [0,-4 1,-4, 2,-4, -1,-4] , [-1,1, 1,-1, 2,-1 
-        '''
-        h = {}
-        out = []
-        nums.sort()
         s = set()
-        ''' [-4,-1,-1,0,1,2]'''
+        nums.sort()
+        out = []
 
+        
         for i in range(len(nums)):
-            if nums[i] in s:
-                continue
-            else:
-                s.add(nums[i])
-            R = len(nums) - 1
             L = i + 1
-            target = nums[i] * -1 
-            while L < R:   
-                if nums[L] + nums[R] < target:
+            R = (len(nums)) - 1
+            target = nums[i] * -1
+            while L < R:
+                sum = nums[L] + nums[R]
+                if sum < target:
                     L += 1
-                elif nums[L] + nums[R] > target:
+                elif sum > target: 
                     R -= 1
                 else:
                     if (nums[i],nums[L],nums[R]) not in s:
-                        s.add((nums[i],nums[L],nums[R]))
                         out.append([nums[i],nums[L],nums[R]])
+                        s.add((nums[i],nums[L],nums[R]))
                     
                     L += 1
+
         return out
- 
-  
- 
 
 
 
-            
-            
